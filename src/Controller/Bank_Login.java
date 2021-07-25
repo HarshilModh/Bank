@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Bean.UserBean;
+import Dao.UserDao;
 import sun.security.provider.certpath.ResponderId;
 
 /**
@@ -33,6 +36,22 @@ public class Bank_Login extends HttpServlet {
 		String password=request.getParameter("Password");
 		if(dbEmail.equalsIgnoreCase(email) && dbPassword.equalsIgnoreCase(password)) {
 		response.sendRedirect("Admin_home.jsp");
+		}
+		else {
+			UserBean users=new UserBean();
+			users.setEmail(email);
+			users.setPassword(password);
+			UserDao userdao=new UserDao();
+			ResultSet records=userdao.checkUser(users);
+			System.out.println(records);
+			if(records==null) {
+				System.out.println("Error");
+				
+			}
+			else {
+				response.sendRedirect("user_home.jsp");
+			}
+			
 		}
 			
 	}

@@ -27,7 +27,7 @@
               <h3>Sign Up to <strong>Bank</strong></h3>
               <p class="mb-4"></p>
             </div>
-            <form action="#" method="post">
+            <form action="Bank_SignUp" method="post">
               <div class="form-group first">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username"name="Name">
